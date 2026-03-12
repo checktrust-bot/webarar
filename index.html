@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>WebAR Marker</title>
+  <meta charset="UTF-8">
+  <title>WebAR Mobile Marker</title>
 
-<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <!-- A-Frame Library -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- AR.js Library -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
-<style>
-body{margin:0;overflow:hidden;}
-</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+  <style>
+    body { margin:0; overflow:hidden; }
+    a-scene { width:100vw; height:100vh; }
+  </style>
 </head>
 <body>
 
-<a-scene embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: true;">
+<a-scene embedded
+         vr-mode-ui="enabled: false"
+         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: true;">
 
-<a-marker type="pattern" url="pattern-tracker.patt">
+  <!-- Marker: use Hiro preset for testing -->
+  <!-- Replace 'preset="hiro"' with your custom marker type/patt file when ready -->
+  <a-marker preset="hiro">
+    
+    <!-- Test Cube to check marker detection -->
+    <a-box position="0 0.5 0" color="red" scale="1 1 1"></a-box>
 
-<!-- TEST CUBE -->
-<a-box position="0 0.5 0" color="red" scale="1 1 1"></a-box>
+    <!-- Your 3D Model -->
+    <a-entity gltf-model="ar.glb"
+              scale="2 2 2"
+              position="0 0 0"
+              rotation="0 180 0">
+    </a-entity>
 
-<!-- YOUR 3D MODEL -->
-<a-entity gltf-model="ar.glb"
-          scale="2 2 2"
-          position="0 0 0"
-          rotation="0 180 0">
-</a-entity>
+  </a-marker>
 
-</a-marker>
+  <!-- Camera -->
+  <a-entity camera></a-entity>
 
-<a-entity camera></a-entity>
 </a-scene>
 
 </body>
